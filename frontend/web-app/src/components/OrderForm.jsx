@@ -155,26 +155,46 @@ const OrderForm = ({ isOpen, onClose, onSubmit, initialData = null }) => {
                     
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">ORIGEN (DIRECCIÓN)</label>
-                      <input 
-                        required
-                        type="text" 
-                        className={`w-full input-field ${pickingType === 'origin' ? 'border-accent-blue' : ''}`}
-                        value={formData.originAddress}
-                        onFocus={() => setPickingType('origin')}
-                        onChange={(e) => setFormData({...formData, originAddress: e.target.value})}
-                      />
+                      <div className="flex gap-2">
+                        <input 
+                          required
+                          type="text" 
+                          className={`flex-1 input-field ${pickingType === 'origin' ? 'border-accent-blue' : ''}`}
+                          value={formData.originAddress}
+                          onFocus={() => setPickingType('origin')}
+                          onChange={(e) => setFormData({...formData, originAddress: e.target.value})}
+                        />
+                        <button 
+                          type="button"
+                          title="Ubicar en mapa"
+                          onClick={() => setPickingType('origin')}
+                          className="px-3 bg-stealth-700 border border-stealth-600 text-zinc-400 hover:text-white"
+                        >
+                          <Navigation size={14} />
+                        </button>
+                      </div>
                     </div>
 
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 mb-2">DESTINO (DIRECCIÓN)</label>
-                      <input 
-                        required
-                        type="text" 
-                        className={`w-full input-field ${pickingType === 'destination' ? 'border-purple-500' : ''}`}
-                        value={formData.destinationAddress}
-                        onFocus={() => setPickingType('destination')}
-                        onChange={(e) => setFormData({...formData, destinationAddress: e.target.value})}
-                      />
+                      <div className="flex gap-2">
+                        <input 
+                          required
+                          type="text" 
+                          className={`flex-1 input-field ${pickingType === 'destination' ? 'border-purple-500' : ''}`}
+                          value={formData.destinationAddress}
+                          onFocus={() => setPickingType('destination')}
+                          onChange={(e) => setFormData({...formData, destinationAddress: e.target.value})}
+                        />
+                        <button 
+                          type="button"
+                          title="Ubicar en mapa"
+                          onClick={() => setPickingType('destination')}
+                          className="px-3 bg-stealth-700 border border-stealth-600 text-zinc-400 hover:text-white"
+                        >
+                          <Navigation size={14} />
+                        </button>
+                      </div>
                     </div>
                   </div>
 

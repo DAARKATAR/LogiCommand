@@ -1,7 +1,7 @@
 {
   "name": "web-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "public/electron.js",
   "build": {
@@ -21,8 +21,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "TU_USUARIO_GITHUB",
-        "repo": "TU_REPOSITORIO"
+        "owner": "DAARKATAR",
+        "repo": "LogiCommand"
       }
     ]
   },
