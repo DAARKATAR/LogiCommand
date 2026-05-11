@@ -1,0 +1,11 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: tracking-service
+  data:
+    mongodb:
+      uri: mongodb://admin:adminpassword@logistics-mongo:27017/tracking_db?authSource=admin
+  mongodb:
+    uri: mongodb://admin:adminpassword@logistics-mongo:27017/tracking_db?authSource=admin

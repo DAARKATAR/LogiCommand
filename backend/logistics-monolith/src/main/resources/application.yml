@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: logistics-monolith
+  
+  datasource:
+    url: jdbc:sqlite:logistics.db
+    driver-class-name: org.sqlite.JDBC
+  
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# Configuración del motor OSRM local
+osrm:
+  url: http://localhost:5000

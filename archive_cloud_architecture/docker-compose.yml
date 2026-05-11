@@ -1,0 +1,154 @@
+version: '3.8'
+
+services:
+  # Base de datos relacional (PostgreSQL) para microservicios Order y Dispatch
+  postgres:
+    image: postgres:15-alpine
+    container_name: logistics-postgres
+    environment:
+      POSTGRES_USER: logistics_user
+      POSTGRES_PASSWORD: logistics_password
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5454:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - logistics-network
+    restart: unless-stopped
+
+  # Base de datos NoSQL (MongoDB) para microservicio Tracking (alta escritura GPS)
+  mongodb:
+    image: mongo:6
+    container_name: logistics-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: adminpassword
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - logistics-network
+    restart: unless-stopped
+
+  # Broker de Mensajería Asíncrona (RabbitMQ)
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: logistics-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: adminpassword
+    ports:
+      - "5672:5672"     # Puerto principal AMQP
+      - "15672:15672"   # Panel de Administración Web
+    networks:
+      - logistics-network
+    restart: unless-stopped
+
+  order-service:
+    build:
+      context: ./backend/order-service
+    container_name: order-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - logistics-network
+
+  dispatch-service:
+    build:
+      context: ./backend/dispatch-service
+    container_name: dispatch-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - logistics-network
+
+  notification-service:
+    build:
+      context: ./backend/notification-service
+    container_name: notification-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - rabbitmq
+    environment:
+      - SPRING_RABBITMQ_HOST=logistics-rabbitmq
+    networks:
+      - logistics-network
+
+  tracking-service:
+    build:
+      context: ./backend/tracking-service
+    container_name: tracking-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - mongodb
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://admin:adminpassword@logistics-mongo:27017/tracking_db?authSource=admin
+      - SPRING_MONGODB_URI=mongodb://admin:adminpassword@logistics-mongo:27017/tracking_db?authSource=admin
+    networks:
+      - logistics-network
+
+  api-gateway:
+    build:
+      context: ./middleware/api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - order-service
+      - dispatch-service
+      - gps-service
+    networks:
+      - logistics-network
+
+  osrm-backend:
+    build:
+      context: ./infrastructure/osrm
+    container_name: osrm-backend
+    ports:
+      - "5000:5000"
+    networks:
+      - logistics-network
+
+  gps-service:
+    build:
+      context: ./backend/gps-service
+    container_name: gps-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_REGISTER_WITH_EUREKA=false
+      - EUREKA_CLIENT_FETCH_REGISTRY=false
+      - OSRM_URL=http://osrm-backend:5000
+    depends_on:
+      - osrm-backend
+    networks:
+      - logistics-network
+
+  frontend:
+    build:
+      context: ./frontend/web-app
+    container_name: logistics-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - logistics-network
+
+networks:
+  logistics-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  mongo_data:

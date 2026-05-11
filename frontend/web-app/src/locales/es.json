@@ -1,0 +1,54 @@
+{
+  "header": {
+    "title": "CENTRO DE COMANDO",
+    "search": "BUSCAR SISTEMA...",
+    "language": "ES"
+  },
+  "nav": {
+    "overview": "RESUMEN",
+    "tracking": "RASTREO",
+    "orders": "PEDIDOS",
+    "settings": "AJUSTES"
+  },
+  "dashboard": {
+    "active_missions": "MISIONES ACTIVAS",
+    "transit_velocity": "VELOCIDAD DE TRÁNSITO",
+    "anomalies": "ANOMALÍAS",
+    "success_rate": "TASA DE ÉXITO",
+    "mission_status": "ESTADO DE MISIONES",
+    "pipeline": "DISTRIBUCIÓN DE FLUJO"
+  },
+  "orders": {
+    "live_manifest": "MANIFIESTO EN VIVO",
+    "new_dispatch": "NUEVO DESPACHO",
+    "tracking_id": "ID DE RASTREO",
+    "route": "RUTA / CLIENTE",
+    "dispatch_unit": "UNIDAD DE DESPACHO",
+    "status": "ESTADO",
+    "actions": "ACCIONES",
+    "no_shipments": "NO HAY ENVÍOS ACTIVOS.",
+    "adjust_filters": "Ajuste los filtros para ver el historial."
+  },
+  "form": {
+    "update": "ACTUALIZAR ENVÍO",
+    "create": "NUEVO ENVÍO",
+    "editing": "Editando Pedido #",
+    "register": "Registrar nuevo pedido logístico",
+    "customer": "NOMBRE DEL CLIENTE",
+    "origin": "DIRECCIÓN DE ORIGEN",
+    "destination": "DIRECCIÓN DE DESTINO",
+    "package": "CONTENIDO DEL PAQUETE",
+    "status": "ESTADO DEL PEDIDO",
+    "btn_update": "ACTUALIZAR REGISTROS",
+    "btn_create": "INICIAR DESPACHO",
+    "success_create": "Pedido Creado",
+    "success_update": "Pedido Actualizado",
+    "sync": "Registros del sistema sincronizados."
+  },
+  "map": {
+    "title": "CENTRO DE COMANDO",
+    "region": "REGIÓN: CLUSTER COLOMBIA",
+    "accuracy": "Precisión",
+    "location": "Ubicación"
+  }
+}

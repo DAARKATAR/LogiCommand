@@ -1,0 +1,9 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: gps-service
+
+osrm:
+  url: http://localhost:5000

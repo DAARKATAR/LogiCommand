@@ -1,0 +1,54 @@
+{
+  "header": {
+    "title": "COMMAND CENTER",
+    "search": "SEARCH SYSTEM...",
+    "language": "EN"
+  },
+  "nav": {
+    "overview": "OVERVIEW",
+    "tracking": "TRACKING",
+    "orders": "ORDERS",
+    "settings": "SETTINGS"
+  },
+  "dashboard": {
+    "active_missions": "ACTIVE MISSIONS",
+    "transit_velocity": "TRANSIT VELOCITY",
+    "anomalies": "ANOMALIES",
+    "success_rate": "SUCCESS RATE",
+    "mission_status": "MISSION STATUS",
+    "pipeline": "PIPELINE DISTRIBUTION"
+  },
+  "orders": {
+    "live_manifest": "LIVE MANIFEST",
+    "new_dispatch": "NEW DISPATCH",
+    "tracking_id": "TRACKING ID",
+    "route": "ROUTE / CLIENT",
+    "dispatch_unit": "DISPATCH UNIT",
+    "status": "STATUS",
+    "actions": "ACTIONS",
+    "no_shipments": "NO ACTIVE SHIPMENTS.",
+    "adjust_filters": "Adjust filters to view history."
+  },
+  "form": {
+    "update": "UPDATE SHIPMENT",
+    "create": "NEW SHIPMENT",
+    "editing": "Editing Order #",
+    "register": "Register a new logistics order",
+    "customer": "CUSTOMER FULL NAME",
+    "origin": "ORIGIN ADDRESS",
+    "destination": "DESTINATION ADDRESS",
+    "package": "PACKAGE CONTENTS",
+    "status": "ORDER STATUS",
+    "btn_update": "UPDATE RECORDS",
+    "btn_create": "INITIATE DISPATCH",
+    "success_create": "Order Created",
+    "success_update": "Order Updated",
+    "sync": "System records synchronized."
+  },
+  "map": {
+    "title": "COMMAND CENTER",
+    "region": "REGION: COLOMBIA CLUSTER",
+    "accuracy": "Accuracy",
+    "location": "Location"
+  }
+}

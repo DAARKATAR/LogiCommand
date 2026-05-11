@@ -1,0 +1,23 @@
+# Dependencias
+node_modules/
+dist/
+dist-electron/
+*.log
+
+# Backend
+target/
+.mvn/
+logistics.db
+
+# Mapas (Pesados, no se suben a Git)
+frontend/web-app/public/maps/
+frontend/web-app/public/backend/server.jar
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db

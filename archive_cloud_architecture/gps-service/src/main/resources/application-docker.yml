@@ -1,0 +1,9 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: gps-service
+
+osrm:
+  url: ${OSRM_URL:http://osrm-backend:5000}
