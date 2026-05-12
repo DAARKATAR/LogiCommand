@@ -33,7 +33,8 @@
     "preview": "vite preview",
     "electron:start": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
     "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && npm run electron:start\"",
-    "electron:build": "npm run build && electron-builder"
+    "electron:build": "npm run build && electron-builder",
+    "release": "npm run build && electron-builder --publish always"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
